@@ -1177,6 +1177,18 @@ QString TConsole::assemble_html_font_specs()
     return s;
 }
 
+QSize TConsole::getMainWindowSize() const
+{
+    QSize consoleSize = size();
+
+    int toolbarWidth = mpLeftToolBar->width() + mpRightToolBar->width();
+    int toolbarHeight = mpTopToolBar->height();
+    int commandLineHeight = mpCommandLine->height();
+
+    QSize mainWindowSize( consoleSize.width()-toolbarWidth, consoleSize.height()-(commandLineHeight+toolbarHeight));
+    return mainWindowSize;
+}
+
 void TConsole::logger_set_text_properties( QString tags )
 {
     switch( tags.toInt() )
